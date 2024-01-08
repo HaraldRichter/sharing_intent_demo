@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class ThirdScreen extends StatelessWidget {
+  const ThirdScreen({super.key, this.someText});
+
+  final String? someText;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: const Text("Home"),
       ),
@@ -15,10 +18,12 @@ class HomeScreen extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              "This is the boring home screen, nothing is happening here. Go away!\n",
+              "This is the THIRD screen, nothing is happening here. Go away!\n",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
+          if (someText != null)
+            Text(someText!),
           ElevatedButton(
             onPressed: () {},
             child: const Text("Shared Files"),
@@ -26,9 +31,9 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 12),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('thirdScreen', arguments: 'Some Text here!');
+              Navigator.of(context).pushNamed('/');
             },
-            child: const Text("Third Screen"),
+            child: const Text("Home"),
           ),
         ],
       ),

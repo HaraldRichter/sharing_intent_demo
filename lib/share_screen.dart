@@ -8,24 +8,42 @@ class ShareScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = 'Shared Files List';
+    const title = 'Shared Files Screen';
 
     return MaterialApp(
       title: title,
       home: Scaffold(
         appBar: AppBar(
           title: const Text(title),
+          centerTitle: true,
+          backgroundColor: Colors.blueGrey,
         ),
-        body: ListView.builder(
-          itemCount: sharedFiles.length,
-          prototypeItem: ListTile(
-            title: Text(sharedFiles.first.toString()),
-          ),
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(sharedFiles[index].toString()),
-            );
-          },
+        body: Column(
+          children: [
+            const Text(
+              "\nShared Files List\n",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/');
+                },
+                child: const Text('Home')),
+            const SizedBox(height: 12),
+            Expanded(
+              child: ListView.builder(
+                itemCount: sharedFiles.length,
+                prototypeItem: ListTile(
+                  title: Text(sharedFiles.first.toString()),
+                ),
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(sharedFiles[index].toString()),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
